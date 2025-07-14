@@ -13,13 +13,14 @@ ZehnderRF = zehnder_ns.class_("ZehnderRF", fan.FanState)
 
 CONF_NRF905 = "nrf905"
 
-CONFIG_SCHEMA = fan.FAN_SCHEMA.extend(
-    {
-        cv.GenerateID(): cv.declare_id(ZehnderRF),
-        cv.Required(CONF_NRF905): cv.use_id(nRF905Component),
-        cv.Optional(CONF_UPDATE_INTERVAL, default="30s"): cv.update_interval,
-    }
-).extend(cv.COMPONENT_SCHEMA)
+CONFIG_SCHEMA = fan.fan_schema.extend(ZehnderRF)
+    .extend(cv.COMPONENT_SCHEMA)
+    .extend(
+        {
+            cv.Required(CONF_NRF905): cv.use_id(nRF905Component),
+            cv.Optional(CONF_UPDATE_INTERVAL, default="30s"): cv.update_interval,
+        }
+    )
 
 
 async def to_code(config):
