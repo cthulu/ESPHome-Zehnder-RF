@@ -9,7 +9,7 @@ from esphome.components.nrf905 import nRF905Component
 DEPENDENCIES = ["nrf905"]
 
 zehnder_ns = cg.esphome_ns.namespace("zehnder")
-ZehnderRF = zehnder_ns.class_("ZehnderRF", fan.FanState)
+ZehnderRF = zehnder_ns.class_("ZehnderRF", cg.Component)
 
 CONF_NRF905 = "nrf905"
 
